@@ -1,69 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Jasmine Spa | Massage in Poquoson, VA</title>
-
+  <title>Super Foot Spa | Foot Massage & Acupressure in Newark, CA</title>
   <meta
     name="description"
-    content="Jasmine Spa in Poquoson, Virginia. Foot Massage, Therapeutic Massage, Swedish Massage, Deep Tissue Massage, Hot Stone Massage and Couples Massage. Call or text 757-525-8188."
-  >
+    content="Super Foot Spa in Newark, California. Foot Massage, Acupressure and Combo sessions. Call (510) 364-5515."
+  />
+  <meta name="theme-color" content="#10261f" />
 
-  <meta
-    name="keywords"
-    content="Jasmine Spa, massage Poquoson VA, massage near me, foot massage, therapeutic massage, Swedish massage, deep tissue massage, hot stone massage, couples massage"
-  >
-
-  <meta name="theme-color" content="#f6f1eb">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+  <!-- Elegant typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
+    /* =========================================================
+       SUPER FOOT SPA
+       Single-file luxury spa website
+       ========================================================= */
+
     :root {
-      --cream: #f7f3ed;
-      --cream-2: #eee7df;
+      --ink: #0a1411;
+      --forest: #10261f;
+      --forest-2: #17372d;
+      --forest-3: #21483b;
+
+      --cream: #f7f1e7;
+      --ivory: #fffdf8;
+      --sand: #e7dccb;
+      --muted: #9d9b92;
+
+      --gold: #c7a66a;
+      --gold-light: #e4c98f;
+      --gold-dark: #927544;
+
       --white: #ffffff;
-      --dark: #24211f;
-      --muted: #746e68;
-      --brown: #8c7665;
-      --brown-dark: #665346;
-      --accent: #a88d78;
-      --line: rgba(52, 45, 40, 0.16);
-      --shadow: 0 16px 50px rgba(37, 31, 27, 0.12);
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "Montserrat", Arial, sans-serif;
+      --black: #050807;
+
+      --shadow:
+        0 30px 90px rgba(3, 15, 11, 0.14);
+
+      --shadow-dark:
+        0 32px 90px rgba(0, 0, 0, 0.28);
+
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+
+      --container: 1180px;
+      --nav-height: 82px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 100px;
     }
 
     body {
-      font-family: var(--sans);
-      color: var(--dark);
-      background: var(--cream);
+      margin: 0;
+      color: var(--ink);
+      background: var(--ivory);
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
       line-height: 1.7;
       overflow-x: hidden;
     }
 
+    body.menu-open {
+      overflow: hidden;
+    }
+
     img {
       display: block;
-      width: 100%;
+      max-width: 100%;
     }
 
     a {
@@ -72,267 +94,78 @@
     }
 
     button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
     a {
       -webkit-tap-highlight-color: transparent;
     }
 
+    ::selection {
+      background: var(--gold);
+      color: var(--forest);
+    }
+
     .container {
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
+      width: min(calc(100% - 40px), var(--container));
+      margin-inline: auto;
     }
 
-    /* =========================
-       TOP BAR
-    ========================= */
-
-    .topbar {
-      background: var(--dark);
-      color: rgba(255,255,255,0.88);
-      font-size: 11px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .topbar-inner {
-      min-height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 20px;
-    }
-
-    .topbar a:hover {
-      color: #fff;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(247, 243, 237, 0.96);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav-wrap {
-      min-height: 86px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .nav-left,
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .nav-right {
-      justify-content: flex-end;
-    }
-
-    .nav-link {
+    .section {
       position: relative;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.19em;
-      text-transform: uppercase;
-      white-space: nowrap;
+      padding: clamp(80px, 9vw, 140px) 0;
     }
 
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 0;
-      height: 1px;
-      background: var(--dark);
-      transition: width 0.25s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .brand {
-      min-width: 220px;
-      text-align: center;
-      line-height: 1;
-    }
-
-    .brand-name {
-      font-family: var(--serif);
-      font-size: 31px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .brand-sub {
-      margin-top: 8px;
-      font-size: 8px;
-      color: var(--muted);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    .booking-nav {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 19px;
-      color: #fff;
-      background: var(--dark);
-      border: 1px solid var(--dark);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: 0.25s ease;
-    }
-
-    .booking-nav:hover {
-      background: transparent;
-      color: var(--dark);
-    }
-
-    .mobile-menu-button {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .mobile-menu-button span {
-      display: block;
-      width: 25px;
-      height: 1px;
-      margin: 6px auto;
-      background: var(--dark);
-      transition: 0.25s ease;
-    }
-
-    .mobile-menu {
-      display: none;
-      padding: 14px 24px 26px;
-      border-top: 1px solid var(--line);
-      background: var(--cream);
-    }
-
-    .mobile-menu.open {
-      display: block;
-    }
-
-    .mobile-menu a {
-      display: block;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 11px;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--gold-dark);
+      font-size: 0.76rem;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      position: relative;
-      min-height: 760px;
-      display: flex;
-      align-items: center;
-      isolation: isolate;
-      overflow: hidden;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(26, 22, 19, 0.67) 0%,
-          rgba(26, 22, 19, 0.46) 40%,
-          rgba(26, 22, 19, 0.12) 72%,
-          rgba(26, 22, 19, 0.06) 100%
-        ),
-        url("https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=2200&q=85")
-        center 46% / cover no-repeat;
-    }
-
-    .hero::before {
+    .eyebrow::before {
       content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,0.03),
-        rgba(0,0,0,0.12)
-      );
-    }
-
-    .hero-content {
-      width: min(660px, 90%);
-      color: #fff;
-      padding: 80px 0;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    .hero-eyebrow::before {
-      content: "";
-      width: 45px;
+      width: 34px;
       height: 1px;
-      background: rgba(255,255,255,0.72);
+      background: currentColor;
     }
 
-    .hero h1 {
-      max-width: 620px;
-      font-family: var(--serif);
-      font-size: clamp(58px, 7vw, 99px);
-      font-weight: 400;
-      line-height: 0.93;
+    .section-title {
+      margin: 0;
+      color: var(--forest);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      font-weight: 600;
+      line-height: 0.98;
       letter-spacing: -0.025em;
     }
 
-    .hero-subtitle {
-      margin-top: 23px;
-      font-family: var(--serif);
-      font-size: clamp(24px, 2vw, 31px);
-      font-weight: 400;
-      font-style: italic;
+    .section-copy {
+      max-width: 660px;
+      margin: 24px 0 0;
+      color: #5d655f;
+      font-size: clamp(1rem, 1.5vw, 1.08rem);
     }
 
-    .hero-description {
-      max-width: 570px;
-      margin-top: 25px;
-      color: rgba(255,255,255,0.88);
-      font-size: 13px;
-      line-height: 1.9;
-      letter-spacing: 0.02em;
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.7fr);
+      gap: 60px;
+      align-items: end;
+      margin-bottom: clamp(42px, 6vw, 76px);
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 37px;
+    .section-head .section-copy {
+      margin: 0;
     }
 
     .btn {
@@ -340,771 +173,2105 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0 28px;
+      gap: 10px;
+      padding: 14px 24px;
       border: 1px solid transparent;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.19em;
-      text-transform: uppercase;
+      border-radius: 999px;
       cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       transition:
+        transform 0.25s ease,
         background 0.25s ease,
         color 0.25s ease,
         border-color 0.25s ease,
-        transform 0.25s ease;
+        box-shadow 0.25s ease;
     }
 
     .btn:hover {
       transform: translateY(-2px);
     }
 
-    .btn-light {
-      background: #fff;
-      color: var(--dark);
-      border-color: #fff;
+    .btn-primary {
+      color: var(--forest);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 16px 36px rgba(199, 166, 106, 0.24);
     }
 
-    .btn-light:hover {
-      background: transparent;
-      color: #fff;
+    .btn-primary:hover {
+      box-shadow: 0 20px 44px rgba(199, 166, 106, 0.34);
     }
 
-    .btn-outline-light {
-      color: #fff;
-      border-color: rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.02);
+    .btn-outline {
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.34);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
     }
 
-    .btn-outline-light:hover {
-      color: var(--dark);
-      background: #fff;
-      border-color: #fff;
+    .btn-outline:hover {
+      border-color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.11);
     }
 
-    /* =========================
-       INTRO
-    ========================= */
+    .btn-dark {
+      color: var(--cream);
+      background: var(--forest);
+    }
 
-    .intro {
-      padding: 122px 0;
-      background: var(--cream);
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+
+    .site-header {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      border-bottom: 1px solid transparent;
+      transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        height 0.35s ease;
+    }
+
+    .site-header.scrolled {
+      height: 72px;
+      background: rgba(9, 25, 20, 0.92);
+      border-color: rgba(212, 184, 129, 0.16);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1002;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+    }
+
+    .brand-mark {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(228, 201, 143, 0.65);
+      border-radius: 50%;
+      color: var(--gold-light);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.42rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.6rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links > a:not(.nav-call) {
+      position: relative;
+      padding: 10px 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links > a:not(.nav-call)::after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links > a:not(.nav-call):hover {
+      color: var(--white);
+    }
+
+    .nav-links > a:not(.nav-call):hover::after {
+      width: 100%;
+    }
+
+    .nav-call {
+      min-height: 44px;
+      padding: 10px 18px;
+      color: var(--forest);
+      background: var(--gold-light);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .menu-button {
+      position: relative;
+      z-index: 1002;
+      width: 46px;
+      height: 46px;
+      display: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      position: absolute;
+      left: 13px;
+      width: 18px;
+      height: 1.5px;
+      background: var(--white);
+      transition:
+        transform 0.25s ease,
+        top 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .menu-button span:nth-child(1) {
+      top: 17px;
+    }
+
+    .menu-button span:nth-child(2) {
+      top: 22px;
+    }
+
+    .menu-button span:nth-child(3) {
+      top: 27px;
+    }
+
+    .menu-button.active span:nth-child(1) {
+      top: 22px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active span:nth-child(3) {
+      top: 22px;
+      transform: rotate(-45deg);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: var(--forest);
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.05);
+      transition:
+        opacity 1.4s ease,
+        transform 7s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(4, 15, 11, 0.88) 0%,
+          rgba(4, 15, 11, 0.63) 45%,
+          rgba(4, 15, 11, 0.27) 72%,
+          rgba(4, 15, 11, 0.4) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(4, 12, 9, 0.28) 0%,
+          rgba(4, 12, 9, 0.15) 38%,
+          rgba(4, 12, 9, 0.86) 100%
+        );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      right: -10vw;
+      bottom: -30vh;
+      width: 70vw;
+      height: 70vw;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(199, 166, 106, 0.18),
+        transparent 68%
+      );
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      padding:
+        calc(var(--nav-height) + 90px)
+        0
+        clamp(64px, 9vh, 110px);
+    }
+
+    .hero-inner {
+      max-width: 850px;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: var(--gold-light);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    .hero h1 {
+      max-width: 820px;
+      margin: 0;
+      color: var(--white);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(4rem, 9vw, 8.2rem);
+      font-weight: 600;
+      line-height: 0.84;
+      letter-spacing: -0.045em;
+    }
+
+    .hero h1 span {
+      color: var(--gold-light);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      max-width: 610px;
+      margin: 30px 0 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 34px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 48px;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(8px);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .trust-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      box-shadow: 0 0 0 4px rgba(228, 201, 143, 0.1);
+    }
+
+    .hero-footer {
+      position: absolute;
+      z-index: 4;
+      right: max(20px, calc((100vw - var(--container)) / 2));
+      bottom: 38px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .hero-dot {
+      width: 28px;
+      height: 3px;
+      padding: 0;
+      border: 0;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.28);
+      cursor: pointer;
+      transition:
+        width 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .hero-dot.active {
+      width: 52px;
+      background: var(--gold-light);
+    }
+
+    /* =========================================================
+       INTRO STRIP
+       ========================================================= */
+
+    .intro-strip {
+      position: relative;
+      z-index: 4;
+      background: var(--forest);
+      border-top: 1px solid rgba(228, 201, 143, 0.12);
     }
 
     .intro-grid {
       display: grid;
-      grid-template-columns: 0.86fr 1.14fr;
-      gap: 90px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .intro-item {
+      min-height: 135px;
+      padding: 28px 30px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .intro-item:first-child {
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .intro-number {
+      color: var(--gold-light);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .intro-label {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about {
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(199, 166, 106, 0.08),
+          transparent 26%
+        ),
+        var(--ivory);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(46px, 8vw, 110px);
       align-items: center;
     }
 
-    .intro-image-wrap {
+    .about-visual {
       position: relative;
-      padding: 0 0 48px 46px;
+      min-height: 650px;
     }
 
-    .intro-image-wrap::before {
-      content: "";
+    .about-main-photo {
       position: absolute;
+      top: 0;
       left: 0;
-      bottom: 0;
-      width: 74%;
-      height: 76%;
-      border: 1px solid rgba(91, 74, 62, 0.25);
-    }
-
-    .intro-image {
-      position: relative;
-      z-index: 1;
-      min-height: 570px;
-      object-fit: cover;
+      width: 78%;
+      height: 82%;
+      overflow: hidden;
+      border-radius: 190px 190px 28px 28px;
+      background: var(--sand);
       box-shadow: var(--shadow);
     }
 
-    .section-kicker {
-      margin-bottom: 18px;
-      color: var(--brown-dark);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(44px, 5vw, 70px);
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-
-    .intro-copy h3 {
-      margin: 29px 0 18px;
-      font-family: var(--serif);
-      font-size: 29px;
-      font-weight: 500;
-    }
-
-    .intro-copy p {
-      max-width: 590px;
-      margin-bottom: 18px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    .intro-details {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 30px;
-      margin-top: 35px;
-      padding-top: 30px;
-      border-top: 1px solid var(--line);
-    }
-
-    .detail-label {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--brown);
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-
-    .detail-value {
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.45;
-    }
-
-    /* =========================
-       PHILOSOPHY
-    ========================= */
-
-    .philosophy {
-      position: relative;
-      min-height: 500px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(30,25,22,0.53), rgba(30,25,22,0.53)),
-        url("https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=2200&q=85")
-        center / cover no-repeat;
-      background-attachment: fixed;
-    }
-
-    .philosophy-inner {
-      width: min(800px, calc(100% - 48px));
-      padding: 80px 0;
-      text-align: center;
-      color: #fff;
-    }
-
-    .philosophy .section-kicker {
-      color: rgba(255,255,255,0.72);
-    }
-
-    .philosophy-title {
-      font-family: var(--serif);
-      font-size: clamp(47px, 6vw, 78px);
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .philosophy p {
-      max-width: 680px;
-      margin: 25px auto 0;
-      color: rgba(255,255,255,0.82);
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    /* =========================
-       SERVICES
-    ========================= */
-
-    .services {
-      padding: 120px 0 128px;
-      background: #fff;
-    }
-
-    .services-head {
-      max-width: 760px;
-      margin: 0 auto 70px;
-      text-align: center;
-    }
-
-    .services-head p {
-      max-width: 630px;
-      margin: 20px auto 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .service-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--cream);
-      border: 1px solid rgba(80, 66, 56, 0.14);
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 55px rgba(55,46,40,0.11);
-    }
-
-    .service-image {
-      height: 270px;
+    .about-main-photo img,
+    .about-small-photo img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
-    .service-content {
-      flex: 1;
-      padding: 35px 31px 34px;
+    .about-small-photo {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 51%;
+      height: 44%;
+      overflow: hidden;
+      border: 10px solid var(--ivory);
+      border-radius: 26px;
+      background: var(--forest);
+      box-shadow: var(--shadow);
     }
 
-    .service-number {
-      margin-bottom: 10px;
-      color: var(--brown);
-      font-size: 9px;
-      letter-spacing: 0.22em;
+    .about-seal {
+      position: absolute;
+      right: 3%;
+      top: 8%;
+      width: 126px;
+      height: 126px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(199, 166, 106, 0.45);
+      border-radius: 50%;
+      color: var(--forest);
+      background: rgba(255, 253, 248, 0.9);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 50px rgba(16, 38, 31, 0.12);
+      text-align: center;
+    }
+
+    .about-seal strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      line-height: 0.95;
+    }
+
+    .about-seal span {
+      display: block;
+      margin-top: 8px;
+      color: var(--gold-dark);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
     }
 
-    .service-card h3 {
-      font-family: var(--serif);
-      font-size: 34px;
-      font-weight: 500;
+    .about-copy .section-title {
+      max-width: 560px;
+    }
+
+    .about-copy > p {
+      margin: 27px 0 0;
+      color: #606963;
+    }
+
+    .about-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+      margin-top: 38px;
+    }
+
+    .about-point {
+      padding: 22px 18px;
+      border: 1px solid #ebe3d6;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .about-point-icon {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      color: var(--gold-dark);
+      background: #f3ead9;
+    }
+
+    .about-point strong {
+      display: block;
+      color: var(--forest);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.25rem;
       line-height: 1.1;
     }
 
-    .service-style {
-      min-height: 44px;
-      margin-top: 10px;
-      color: var(--brown-dark);
-      font-size: 9px;
-      font-weight: 500;
-      line-height: 1.7;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
+    .about-point span {
+      display: block;
+      margin-top: 8px;
+      color: #7b817d;
+      font-size: 0.78rem;
+      line-height: 1.55;
     }
 
-    .price-table {
-      width: 100%;
-      margin-top: 25px;
-      border-collapse: collapse;
+    /* =========================================================
+       EXPERIENCE
+       ========================================================= */
+
+    .experience {
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(199, 166, 106, 0.14),
+          transparent 30%
+        ),
+        var(--forest);
     }
 
-    .price-table th {
-      padding: 10px 5px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-align: right;
-      text-transform: uppercase;
+    .experience .section-title {
+      color: var(--white);
     }
 
-    .price-table th:first-child {
-      text-align: left;
+    .experience .section-copy {
+      color: rgba(255, 255, 255, 0.6);
     }
 
-    .price-table td {
-      padding: 13px 5px;
-      border-bottom: 1px solid var(--line);
-      font-family: var(--serif);
-      font-size: 17px;
-      text-align: right;
+    .experience .eyebrow {
+      color: var(--gold-light);
     }
 
-    .price-table td:first-child {
-      text-align: left;
+    .experience-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 100%;
+      background:
+        linear-gradient(
+          transparent,
+          rgba(228, 201, 143, 0.16),
+          transparent
+        );
+      pointer-events: none;
     }
 
-    .service-book {
-      margin-top: 29px;
-      width: 100%;
-      min-height: 46px;
-      border: 1px solid var(--dark);
-      background: transparent;
-      color: var(--dark);
-    }
-
-    .service-book:hover {
-      background: var(--dark);
-      color: #fff;
-    }
-
-    .pricing-note {
-      margin-top: 31px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.8;
-    }
-
-    /* =========================
-       APPOINTMENT CTA
-    ========================= */
-
-    .appointment {
-      background: var(--cream-2);
-      padding: 95px 0;
-    }
-
-    .appointment-grid {
+    .experience-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 50px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
 
-    .appointment h2 {
-      max-width: 670px;
-      font-family: var(--serif);
-      font-size: clamp(43px, 5vw, 65px);
-      font-weight: 400;
+    .experience-card {
+      position: relative;
+      min-height: 310px;
+      padding: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.075),
+          rgba(255, 255, 255, 0.025)
+        );
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(228, 201, 143, 0.32);
+      background:
+        linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.035)
+        );
+    }
+
+    .experience-step {
+      color: var(--gold-light);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 3.4rem;
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .experience-card h3 {
+      margin: 62px 0 13px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+    }
+
+    .experience-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.88rem;
+    }
+
+    .experience-card::after {
+      content: "";
+      position: absolute;
+      right: -55px;
+      bottom: -55px;
+      width: 130px;
+      height: 130px;
+      border: 1px solid rgba(228, 201, 143, 0.16);
+      border-radius: 50%;
+    }
+
+    /* =========================================================
+       SERVICES
+       ========================================================= */
+
+    .services {
+      background:
+        linear-gradient(180deg, #f6f0e6 0%, #fffdf8 55%, #f7f1e7 100%);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid rgba(16, 38, 31, 0.08);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 24px 70px rgba(16, 38, 31, 0.09);
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 32px 90px rgba(16, 38, 31, 0.15);
+    }
+
+    .service-media {
+      position: relative;
+      height: 330px;
+      overflow: hidden;
+      background: var(--forest);
+    }
+
+    .service-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .service-slide.active {
+      opacity: 1;
+    }
+
+    .service-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 7s ease;
+    }
+
+    .service-slide.active img {
+      transform: scale(1.045);
+    }
+
+    .service-media::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          transparent 52%,
+          rgba(5, 19, 14, 0.6) 100%
+        );
+      pointer-events: none;
+    }
+
+    .combo-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      height: 100%;
+    }
+
+    .combo-pair img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .combo-pair img + img {
+      border-left: 2px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .service-label {
+      position: absolute;
+      z-index: 4;
+      top: 20px;
+      left: 20px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(8, 28, 21, 0.68);
+      backdrop-filter: blur(10px);
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      z-index: 5;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .carousel-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .carousel-dot.active {
+      transform: scale(1.25);
+      background: var(--gold-light);
+    }
+
+    .service-body {
+      padding: 30px;
+    }
+
+    .service-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .service-body h3 {
+      margin: 0;
+      color: var(--forest);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-weight: 600;
       line-height: 1;
     }
 
-    .appointment p {
-      max-width: 640px;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 13px;
+    .service-price-from {
+      flex: 0 0 auto;
+      color: var(--gold-dark);
+      text-align: right;
     }
 
-    .appointment-buttons {
-      display: flex;
-      gap: 12px;
-    }
-
-    .btn-dark {
-      color: #fff;
-      background: var(--dark);
-      border-color: var(--dark);
-    }
-
-    .btn-dark:hover {
-      color: var(--dark);
-      background: transparent;
-    }
-
-    .btn-outline-dark {
-      color: var(--dark);
-      background: transparent;
-      border-color: var(--dark);
-    }
-
-    .btn-outline-dark:hover {
-      color: #fff;
-      background: var(--dark);
-    }
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-      padding: 120px 0 0;
-      background: #fff;
-    }
-
-    .contact-header {
-      margin-bottom: 60px;
-      text-align: center;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      min-height: 540px;
-    }
-
-    .contact-panel {
-      padding: 68px clamp(35px, 5vw, 75px);
-      color: #fff;
-      background: var(--dark);
-    }
-
-    .contact-panel .section-kicker {
-      color: rgba(255,255,255,0.58);
-    }
-
-    .contact-panel h3 {
-      max-width: 450px;
-      font-family: var(--serif);
-      font-size: 44px;
-      font-weight: 400;
-      line-height: 1.05;
-    }
-
-    .contact-items {
-      margin-top: 42px;
-    }
-
-    .contact-item {
-      padding: 19px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.14);
-    }
-
-    .contact-label {
+    .service-price-from span {
       display: block;
-      margin-bottom: 7px;
-      color: rgba(255,255,255,0.55);
-      font-size: 8px;
-      letter-spacing: 0.23em;
+      color: #8b8b83;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    .contact-value {
-      font-family: var(--serif);
-      font-size: 20px;
-      line-height: 1.45;
+    .service-price-from strong {
+      display: block;
+      margin-top: 4px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.65rem;
+      line-height: 1;
     }
 
-    .contact-value a:hover {
+    .service-description {
+      min-height: 93px;
+      margin: 20px 0 0;
+      color: #656d68;
+      font-size: 0.88rem;
+    }
+
+    .service-benefit {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      border-left: 2px solid var(--gold);
+      color: #66706a;
+      background: #faf6ee;
+      font-size: 0.8rem;
+    }
+
+    .service-benefit strong {
+      color: var(--forest);
+    }
+
+    .pricing-list {
+      display: grid;
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid #eee6d9;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee6d9;
+      font-size: 0.84rem;
+    }
+
+    .price-row span {
+      color: #696f6b;
+    }
+
+    .price-row strong {
+      color: var(--forest);
+      font-size: 0.88rem;
+    }
+
+    .service-note {
+      margin-top: 18px;
+      color: #827c70;
+      font-size: 0.73rem;
+      line-height: 1.55;
+    }
+
+    .service-action {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    /* Membership banner */
+
+    .membership {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 34px;
+      align-items: center;
+      margin-top: 30px;
+      padding: clamp(30px, 5vw, 52px);
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      color: var(--white);
+      background:
+        radial-gradient(
+          circle at 90% 30%,
+          rgba(228, 201, 143, 0.18),
+          transparent 33%
+        ),
+        var(--forest);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .membership .eyebrow {
+      margin-bottom: 12px;
+      color: var(--gold-light);
+    }
+
+    .membership h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 5vw, 4.7rem);
+      font-weight: 600;
+      line-height: 0.95;
+    }
+
+    .membership p {
+      max-width: 660px;
+      margin: 16px 0 0;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 0.86rem;
+    }
+
+    /* =========================================================
+       GALLERY
+       ========================================================= */
+
+    .gallery {
+      background: var(--ivory);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 0.9fr;
+      grid-template-rows: 280px 280px;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: var(--sand);
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.055);
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(6, 22, 16, 0.33)
+        );
+    }
+
+    .gallery-tag {
+      position: absolute;
+      z-index: 2;
+      left: 18px;
+      bottom: 16px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.86);
+      background: rgba(7, 24, 18, 0.48);
+      backdrop-filter: blur(10px);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       CALL / VISIT PLANNER
+       ========================================================= */
+
+    .call-section {
+      color: var(--white);
+      background:
+        linear-gradient(
+          120deg,
+          rgba(9, 28, 21, 0.98),
+          rgba(20, 54, 43, 0.96)
+        );
+    }
+
+    .call-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(40px, 7vw, 90px);
+      align-items: center;
+    }
+
+    .call-section .eyebrow {
+      color: var(--gold-light);
+    }
+
+    .call-section .section-title {
+      color: var(--white);
+    }
+
+    .call-section .section-copy {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .big-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 33px;
+      color: var(--gold-light);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4.8vw, 4rem);
+      line-height: 1;
+      transition: color 0.25s ease;
+    }
+
+    .big-phone:hover {
+      color: var(--white);
+    }
+
+    .planner {
+      padding: clamp(24px, 5vw, 42px);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.065);
+      backdrop-filter: blur(12px);
+    }
+
+    .planner h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .planner-note {
+      margin: 9px 0 24px;
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 0.76rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 12px;
+      outline: none;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.065);
+      transition:
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .field select option {
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    .field textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(255, 255, 255, 0.34);
+    }
+
+    .planner-call {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .planner-disclaimer {
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.68rem;
+      text-align: center;
+    }
+
+    /* =========================================================
+       REVIEWS
+       ========================================================= */
+
+    .reviews {
+      overflow: hidden;
+      background: #f4eddf;
+    }
+
+    .reviews .section-head {
+      margin-bottom: 44px;
+    }
+
+    .reviews-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .reviews-wrap::before,
+    .reviews-wrap::after {
+      content: "";
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      width: min(10vw, 140px);
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .reviews-wrap::before {
+      left: 0;
+      background:
+        linear-gradient(90deg, #f4eddf, rgba(244, 237, 223, 0));
+    }
+
+    .reviews-wrap::after {
+      right: 0;
+      background:
+        linear-gradient(-90deg, #f4eddf, rgba(244, 237, 223, 0));
+    }
+
+    .review-row {
+      display: flex;
+      width: max-content;
+      margin-bottom: 14px;
+    }
+
+    .review-row.left {
+      animation: marquee-left 42s linear infinite;
+    }
+
+    .review-row.right {
+      animation: marquee-right 46s linear infinite;
+      transform: translateX(-35%);
+    }
+
+    .review-track {
+      display: flex;
+      gap: 14px;
+      padding-right: 14px;
+    }
+
+    .review-card {
+      width: min(370px, 78vw);
+      flex: 0 0 auto;
+      padding: 26px;
+      border: 1px solid rgba(16, 38, 31, 0.08);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 14px 36px rgba(16, 38, 31, 0.055);
+    }
+
+    .stars {
+      color: var(--gold-dark);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+    }
+
+    .review-card p {
+      margin: 14px 0 0;
+      color: #545e58;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.2rem;
+      line-height: 1.42;
+    }
+
+    .review-card span {
+      display: block;
+      margin-top: 14px;
+      color: #8d8a80;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .review-disclaimer {
+      margin: 22px auto 0;
+      color: #8a877f;
+      font-size: 0.68rem;
+      text-align: center;
+    }
+
+    @keyframes marquee-left {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes marquee-right {
+      from {
+        transform: translateX(-50%);
+      }
+      to {
+        transform: translateX(0%);
+      }
+    }
+
+    /* =========================================================
+       FAQ
+       ========================================================= */
+
+    .faq {
+      background: var(--ivory);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: clamp(45px, 8vw, 110px);
+      align-items: start;
+    }
+
+    .faq-side {
+      position: sticky;
+      top: 110px;
+    }
+
+    .faq-list {
+      border-top: 1px solid #ddd5c8;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ddd5c8;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 38px;
+      gap: 18px;
+      align-items: center;
+      padding: 25px 0;
+      border: 0;
+      color: var(--forest);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      font-weight: 600;
+    }
+
+    .faq-icon {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border: 1px solid #d7c9b5;
+      border-radius: 50%;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 1px;
+      background: var(--gold-dark);
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .faq-question[aria-expanded="true"] .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+
+    .faq-answer-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+    }
+
+    .faq-item.open .faq-answer-wrap {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-answer-inner {
+      overflow: hidden;
+    }
+
+    .faq-answer {
+      max-width: 650px;
+      margin: 0;
+      padding: 0 50px 24px 0;
+      color: #68706b;
+      font-size: 0.88rem;
+    }
+
+    .faq-answer a {
+      color: var(--gold-dark);
+      font-weight: 700;
       text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    .contact-actions {
+    /* =========================================================
+       CONTACT & MAP
+       ========================================================= */
+
+    .contact {
+      padding-top: 0;
+      color: var(--white);
+      background: var(--forest);
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      min-height: 640px;
+    }
+
+    .contact-info {
+      padding:
+        clamp(60px, 8vw, 110px)
+        clamp(28px, 6vw, 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        radial-gradient(
+          circle at 30% 15%,
+          rgba(199, 166, 106, 0.15),
+          transparent 30%
+        ),
+        var(--forest);
+    }
+
+    .contact .eyebrow {
+      color: var(--gold-light);
+    }
+
+    .contact h2 {
+      max-width: 520px;
+      margin: 0;
+      color: var(--white);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 600;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 22px;
+      margin-top: 44px;
+    }
+
+    .contact-detail {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 15px;
+    }
+
+    .contact-detail-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(228, 201, 143, 0.25);
+      border-radius: 50%;
+      color: var(--gold-light);
+    }
+
+    .contact-detail span {
+      display: block;
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .contact-detail strong,
+    .contact-detail a {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.87);
+      font-size: 0.91rem;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .contact-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 11px;
-      margin-top: 36px;
+      gap: 12px;
+      margin-top: 38px;
     }
 
     .map-wrap {
-      min-height: 540px;
-      background: #ddd;
+      min-height: 640px;
+      background: #d9d1c4;
     }
 
     .map-wrap iframe {
       width: 100%;
       height: 100%;
-      min-height: 540px;
+      min-height: 640px;
+      display: block;
       border: 0;
-      filter: saturate(0.75);
+      filter:
+        saturate(0.7)
+        contrast(0.96)
+        sepia(0.08);
     }
 
-    /* =========================
+    /* =========================================================
        FOOTER
-    ========================= */
+       ========================================================= */
 
     footer {
-      padding: 38px 0;
-      color: rgba(255,255,255,0.66);
-      background: #181614;
+      color: rgba(255, 255, 255, 0.58);
+      background: #081511;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
     }
 
-    .footer-grid {
+    .footer-main {
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 30px;
-      align-items: center;
+      grid-template-columns: 1.3fr 0.7fr 0.7fr;
+      gap: 60px;
+      padding: 62px 0 48px;
     }
 
     .footer-brand {
-      font-family: var(--serif);
-      font-size: 23px;
-      color: #fff;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
+      max-width: 460px;
     }
 
-    .footer-copy {
-      font-size: 9px;
+    .footer-brand h3 {
+      margin: 0;
+      color: var(--white);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+    }
+
+    .footer-brand p {
+      margin: 15px 0 0;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 0.82rem;
+    }
+
+    .footer-column h4 {
+      margin: 0 0 16px;
+      color: var(--gold-light);
+      font-size: 0.68rem;
       letter-spacing: 0.12em;
-      text-align: center;
       text-transform: uppercase;
     }
 
-    .footer-phone {
-      justify-self: end;
-      color: #fff;
-      font-size: 10px;
-      letter-spacing: 0.15em;
+    .footer-column a,
+    .footer-column span {
+      display: block;
+      width: fit-content;
+      margin: 9px 0;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 0.8rem;
+      transition: color 0.25s ease;
     }
 
-    /* =========================
-       FLOATING MOBILE ACTIONS
-    ========================= */
+    .footer-column a:hover {
+      color: var(--white);
+    }
 
-    .mobile-actions {
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 22px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      color: rgba(255, 255, 255, 0.34);
+      font-size: 0.68rem;
+    }
+
+    /* =========================================================
+       FLOATING / MOBILE CALL
+       ========================================================= */
+
+    .desktop-call-float {
+      position: fixed;
+      z-index: 900;
+      right: 22px;
+      bottom: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 17px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      color: var(--forest);
+      background: var(--gold-light);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+      font-size: 0.78rem;
+      font-weight: 800;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .desktop-call-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.31);
+    }
+
+    .mobile-call-bar {
       display: none;
     }
 
-    /* =========================
-       REVEAL
-    ========================= */
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
 
     .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+        opacity 0.8s ease,
+        transform 0.8s ease;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
-    /* =========================
-       RESPONSIVE
-    ========================= */
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
 
-    @media (max-width: 1020px) {
-      .nav-left,
-      .nav-right {
-        display: none;
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* =========================================================
+       RESPONSIVE — TABLET
+       ========================================================= */
+
+    @media (max-width: 1080px) {
+      .nav-links {
+        gap: 16px;
       }
 
-      .nav-wrap {
-        grid-template-columns: 44px 1fr 44px;
+      .nav-links > a:not(.nav-call) {
+        font-size: 0.74rem;
       }
 
-      .mobile-menu-button {
-        display: block;
-      }
-
-      .brand {
-        min-width: 0;
-      }
-
-      .brand-name {
-        font-size: 27px;
-      }
-
-      .hero {
-        min-height: 680px;
-      }
-
-      .intro-grid {
-        grid-template-columns: 1fr;
-        gap: 65px;
-      }
-
-      .intro-image-wrap {
-        max-width: 700px;
-      }
-
-      .service-grid {
+      .services-grid {
         grid-template-columns: 1fr 1fr;
       }
 
       .service-card:last-child {
         grid-column: 1 / -1;
-        width: calc(50% - 13px);
-        justify-self: center;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
       }
 
-      .appointment-grid {
+      .service-card:last-child .service-media {
+        height: auto;
+        min-height: 440px;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-wrap {
         grid-template-columns: 1fr;
       }
 
-      .appointment-buttons {
-        justify-content: flex-start;
+      .map-wrap,
+      .map-wrap iframe {
+        min-height: 500px;
       }
     }
 
-    @media (max-width: 760px) {
-      html {
-        scroll-padding-top: 74px;
+    @media (max-width: 900px) {
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 22px;
       }
 
-      body {
-        padding-bottom: 64px;
+      .menu-button {
+        display: block;
       }
 
-      .container {
-        width: min(100% - 30px, 1180px);
-      }
-
-      .topbar {
-        display: none;
-      }
-
-      .nav-wrap {
-        min-height: 72px;
-      }
-
-      .brand-name {
-        font-size: 23px;
-      }
-
-      .brand-sub {
-        display: none;
-      }
-
-      .hero {
-        min-height: calc(100vh - 72px);
-        background-position: 62% center;
-      }
-
-      .hero-content {
-        padding: 90px 0;
-      }
-
-      .hero h1 {
-        font-size: clamp(54px, 17vw, 82px);
-      }
-
-      .hero-description {
-        font-size: 12px;
-      }
-
-      .hero-actions {
-        align-items: stretch;
+      .nav-links {
+        position: fixed;
+        z-index: 1001;
+        inset: 0;
+        display: flex;
         flex-direction: column;
-        max-width: 330px;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+        padding: 100px 30px 40px;
+        visibility: hidden;
+        opacity: 0;
+        background:
+          radial-gradient(
+            circle at 80% 15%,
+            rgba(199, 166, 106, 0.14),
+            transparent 24%
+          ),
+          rgba(7, 23, 17, 0.98);
+        transform: translateY(-12px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease,
+          visibility 0.3s ease;
       }
 
-      .btn {
-        width: 100%;
+      .nav-links.open {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
       }
 
-      .intro,
-      .services {
-        padding: 88px 0;
+      .nav-links > a:not(.nav-call) {
+        padding: 7px 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 9vw, 3.2rem);
+        font-weight: 600;
+      }
+
+      .nav-call {
+        margin-top: 20px;
+        padding: 14px 24px;
+        font-size: 0.9rem;
       }
 
       .intro-grid {
-        gap: 45px;
+        grid-template-columns: 1fr 1fr;
       }
 
-      .intro-image-wrap {
-        padding: 0 0 24px 24px;
+      .intro-item:nth-child(3) {
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      .intro-image {
-        min-height: 420px;
+      .intro-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      .intro-details {
+      .about-grid {
         grid-template-columns: 1fr;
       }
 
-      .philosophy {
-        min-height: 440px;
-        background-attachment: scroll;
+      .about-visual {
+        max-width: 650px;
+        width: 100%;
+        margin-inline: auto;
       }
 
-      .service-grid {
+      .call-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-side {
+        position: static;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .desktop-call-float {
+        display: none;
+      }
+
+      .mobile-call-bar {
+        position: fixed;
+        z-index: 950;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 999px;
+        color: var(--forest);
+        background:
+          linear-gradient(135deg, var(--gold-light), var(--gold));
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.26);
+        font-size: 0.88rem;
+        font-weight: 800;
+      }
+
+      body {
+        padding-bottom: 82px;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE — MOBILE
+       ========================================================= */
+
+    @media (max-width: 680px) {
+      :root {
+        --nav-height: 72px;
+      }
+
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .section {
+        padding: 76px 0;
+      }
+
+      .brand-copy strong {
+        font-size: 1.22rem;
+      }
+
+      .brand-copy span {
+        display: none;
+      }
+
+      .hero-content {
+        padding-top: 150px;
+        padding-bottom: 80px;
+      }
+
+      .hero h1 {
+        font-size: clamp(4rem, 19vw, 6rem);
+      }
+
+      .hero-description {
+        font-size: 0.96rem;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-trust {
+        margin-top: 32px;
+      }
+
+      .hero-footer {
+        display: none;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .intro-item {
+        min-height: 112px;
+        padding: 22px 18px;
+      }
+
+      .intro-number {
+        font-size: 1.42rem;
+      }
+
+      .intro-label {
+        font-size: 0.62rem;
+      }
+
+      .about-visual {
+        min-height: 510px;
+      }
+
+      .about-main-photo {
+        width: 86%;
+        height: 78%;
+        border-radius: 120px 120px 24px 24px;
+      }
+
+      .about-small-photo {
+        width: 54%;
+        height: 41%;
+        border-width: 7px;
+      }
+
+      .about-seal {
+        width: 100px;
+        height: 100px;
+      }
+
+      .about-seal strong {
+        font-size: 1.05rem;
+      }
+
+      .about-points {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        min-height: 245px;
+      }
+
+      .experience-card h3 {
+        margin-top: 36px;
+      }
+
+      .services-grid {
         grid-template-columns: 1fr;
       }
 
       .service-card:last-child {
         grid-column: auto;
-        width: 100%;
+        display: block;
       }
 
-      .service-image {
-        height: 235px;
+      .service-card:last-child .service-media,
+      .service-media {
+        height: 290px;
+        min-height: 0;
       }
 
-      .appointment {
-        padding: 75px 0;
+      .service-body {
+        padding: 25px 22px 26px;
       }
 
-      .appointment-buttons {
-        flex-direction: column;
+      .service-description {
+        min-height: 0;
       }
 
-      .contact {
-        padding-top: 88px;
-      }
-
-      .contact-grid {
+      .membership {
         grid-template-columns: 1fr;
       }
 
-      .contact-panel {
-        padding: 55px 27px;
+      .membership .btn {
+        width: 100%;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 330px 210px 210px;
+      }
+
+      .gallery-item:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+
+      .gallery-item:nth-child(4) {
+        grid-column: 1 / -1;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .big-phone {
+        font-size: clamp(2.15rem, 10vw, 3.1rem);
+      }
+
+      .faq-question {
+        grid-template-columns: 1fr 34px;
+      }
+
+      .faq-answer {
+        padding-right: 10px;
+      }
+
+      .contact-buttons {
+        display: grid;
+      }
+
+      .contact-buttons .btn {
+        width: 100%;
       }
 
       .map-wrap,
       .map-wrap iframe {
-        min-height: 410px;
+        min-height: 420px;
       }
 
-      .footer-grid {
+      .footer-main {
         grid-template-columns: 1fr;
-        gap: 16px;
-        text-align: center;
+        gap: 30px;
       }
 
-      .footer-phone {
-        justify-self: center;
+      .footer-brand {
+        grid-column: auto;
       }
 
-      .mobile-actions {
-        position: fixed;
-        z-index: 1500;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        height: 64px;
-        background: #fff;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.12);
-      }
-
-      .mobile-actions a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
-
-      .mobile-actions .mobile-call {
-        color: var(--dark);
-        background: #fff;
-      }
-
-      .mobile-actions .mobile-text {
-        color: #fff;
-        background: var(--dark);
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
       }
     }
 
-    @media (max-width: 430px) {
-      .brand-name {
-        font-size: 20px;
+    @media (max-width: 400px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        font-size: 55px;
+      .intro-item,
+      .intro-item:first-child,
+      .intro-item:nth-child(3) {
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      .hero-subtitle {
-        font-size: 25px;
+      .service-title-row {
+        display: block;
       }
 
-      .section-title {
-        font-size: 47px;
+      .service-price-from {
+        margin-top: 10px;
+        text-align: left;
       }
 
-      .contact-panel h3 {
-        font-size: 39px;
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 260px);
+      }
+
+      .gallery-item,
+      .gallery-item:first-child,
+      .gallery-item:nth-child(4) {
+        grid-column: auto;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -1112,492 +2279,704 @@
 
 <body>
 
-  <!-- ==========================================
-       TOP BAR
-  =========================================== -->
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>
-        458 C Wythe Creek Road, Poquoson, VA 23662
-      </span>
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Super Foot Spa home">
+        <span class="brand-mark">S</span>
 
-      <span>•</span>
-
-      <a href="tel:+17575258188">
-        757-525-8188
+        <span class="brand-copy">
+          <strong>Super Foot Spa</strong>
+          <span>Newark, California</span>
+        </span>
       </a>
 
-      <span>•</span>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
 
-      <span>
-        Open Daily 8:00 AM – 10:00 PM
-      </span>
-    </div>
-  </div>
-
-
-  <!-- ==========================================
-       NAVIGATION
-  =========================================== -->
-  <header class="site-header">
-    <div class="container nav-wrap">
-
-      <nav class="nav-left" aria-label="Primary navigation">
-        <a class="nav-link" href="#home">Home</a>
-        <a class="nav-link" href="#about">About Us</a>
+        <a
+          class="nav-call"
+          href="tel:+15103645515"
+          aria-label="Call Super Foot Spa at 510 364 5515"
+        >
+          Call (510) 364-5515
+        </a>
       </nav>
 
       <button
-        class="mobile-menu-button"
-        id="mobileMenuButton"
+        class="menu-button"
+        id="menuButton"
         type="button"
-        aria-label="Open navigation"
+        aria-label="Open navigation menu"
+        aria-controls="navLinks"
         aria-expanded="false"
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
-
-      <a class="brand" href="#home" aria-label="Jasmine Spa home">
-        <div class="brand-name">Jasmine Spa</div>
-        <div class="brand-sub">Poquoson · Virginia</div>
-      </a>
-
-      <nav class="nav-right" aria-label="Secondary navigation">
-        <a class="nav-link" href="#services">Services</a>
-        <a class="nav-link" href="#contact">Contact</a>
-
-        <a
-          class="booking-nav sms-link"
-          href="#"
-          data-message="Hi Jasmine Spa, I would like to book a massage appointment."
-        >
-          Text Booking
-        </a>
-      </nav>
-
-      <div aria-hidden="true"></div>
     </div>
-
-    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-
-      <a
-        href="#"
-        class="sms-link"
-        data-message="Hi Jasmine Spa, I would like to book a massage appointment."
-      >
-        Text Booking
-      </a>
-    </nav>
   </header>
 
 
   <main>
 
-    <!-- ==========================================
+    <!-- =====================================================
          HERO
-    =========================================== -->
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
+         ===================================================== -->
+    <section class="hero" id="home" aria-label="Super Foot Spa introduction">
 
-          <div class="hero-eyebrow">
-            Jasmine Spa · Poquoson VA
-          </div>
+      <div class="hero-media" aria-hidden="true">
 
-          <h1>
-            Relax.<br>
-            Restore.<br>
-            Renew.
-          </h1>
+        <div class="hero-slide active">
+          <img
+            src="https://i.pinimg.com/1200x/6a/df/fe/6adffe5706bdce88dd2d2d0fc6875398.jpg"
+            alt=""
+          />
+        </div>
 
-          <div class="hero-subtitle">
-            Massage designed around you
-          </div>
+        <div class="hero-slide">
+          <img
+            src="https://i.pinimg.com/1200x/dc/36/fe/dc36feaf9cc11bec29cc3de7834c539e.jpg"
+            alt=""
+          />
+        </div>
 
-          <p class="hero-description">
-            Step away from the noise of the day and enjoy a comfortable,
-            peaceful massage experience at Jasmine Spa. Our goal is simple:
-            help you relax, release tension and leave feeling refreshed.
-          </p>
+        <div class="hero-slide">
+          <img
+            src="https://i.pinimg.com/1200x/71/a4/b7/71a4b75a19fbadf33bc6dc340e91340c.jpg"
+            alt=""
+          />
+        </div>
 
-          <div class="hero-actions">
+        <div class="hero-slide">
+          <img
+            src="https://i.pinimg.com/736x/c0/e8/3f/c0e83fc3058518c785d6cfe1b15da601.jpg"
+            alt=""
+          />
+        </div>
 
-            <a
-              href="#"
-              class="btn btn-light sms-link"
-              data-message="Hi Jasmine Spa, I would like to book a massage appointment. My preferred date and time is: "
-            >
-              Text To Book
-            </a>
+      </div>
 
-            <a
-              href="tel:+17575258188"
-              class="btn btn-outline-light"
-            >
-              Call: 757-525-8188
-            </a>
+      <div class="hero-content">
+        <div class="container">
+
+          <div class="hero-inner">
+
+            <div class="hero-kicker">
+              Super Foot Spa · Newark, California
+            </div>
+
+            <h1>
+              A quieter way<br />
+              to <span>unwind.</span>
+            </h1>
+
+            <p class="hero-description">
+              Step away from the pace of the day with foot massage,
+              acupressure and combination sessions in a calm,
+              comfort-focused spa setting.
+            </p>
+
+            <div class="hero-actions">
+
+              <a
+                class="btn btn-primary"
+                href="tel:+15103645515"
+                aria-label="Call Super Foot Spa now"
+              >
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                    19.79 19.79 0 0 1-8.63-3.07
+                    19.5 19.5 0 0 1-6-6
+                    19.79 19.79 0 0 1-3.07-8.67
+                    A2 2 0 0 1 4.11 2h3
+                    a2 2 0 0 1 2 1.72
+                    12.84 12.84 0 0 0 .7 2.81
+                    2 2 0 0 1-.45 2.11L8.09 9.91
+                    a16 16 0 0 0 6 6l1.27-1.27
+                    a2 2 0 0 1 2.11-.45
+                    12.84 12.84 0 0 0 2.81.7
+                    A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Call Now
+              </a>
+
+              <a class="btn btn-outline" href="#services">
+                View Services & Pricing
+              </a>
+
+            </div>
+
+            <div class="hero-trust">
+              <span class="trust-pill">
+                <span class="trust-dot"></span>
+                Calm Atmosphere
+              </span>
+
+              <span class="trust-pill">
+                <span class="trust-dot"></span>
+                Clear Pricing
+              </span>
+
+              <span class="trust-pill">
+                <span class="trust-dot"></span>
+                Comfort-Focused
+              </span>
+
+              <span class="trust-pill">
+                <span class="trust-dot"></span>
+                Easy Phone Scheduling
+              </span>
+            </div>
 
           </div>
         </div>
       </div>
+
+      <div class="hero-footer" id="heroDots" aria-label="Hero slideshow controls">
+        <button class="hero-dot active" aria-label="Show image 1"></button>
+        <button class="hero-dot" aria-label="Show image 2"></button>
+        <button class="hero-dot" aria-label="Show image 3"></button>
+        <button class="hero-dot" aria-label="Show image 4"></button>
+      </div>
+
     </section>
 
 
-    <!-- ==========================================
-         ABOUT
-    =========================================== -->
-    <section class="intro" id="about">
+    <!-- =====================================================
+         QUICK DETAILS
+         ===================================================== -->
+    <section class="intro-strip" aria-label="Quick information">
       <div class="container intro-grid">
 
-        <div class="intro-image-wrap reveal">
-          <img
-            class="intro-image"
-            src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1400&q=85"
-            alt="Relaxing massage spa setting"
-            loading="lazy"
-          >
+        <div class="intro-item">
+          <div class="intro-number">$24.99</div>
+          <div class="intro-label">Foot Massage From</div>
         </div>
 
-        <div class="intro-copy reveal">
+        <div class="intro-item">
+          <div class="intro-number">$39.99</div>
+          <div class="intro-label">Acupressure From</div>
+        </div>
 
-          <div class="section-kicker">
-            About Jasmine Spa
+        <div class="intro-item">
+          <div class="intro-number">10 AM</div>
+          <div class="intro-label">Opening Time</div>
+        </div>
+
+        <div class="intro-item">
+          <div class="intro-number">9 PM</div>
+          <div class="intro-label">Closing Time</div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+         ===================================================== -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+
+        <div class="about-visual reveal">
+
+          <div class="about-main-photo">
+            <img
+              src="https://i.pinimg.com/1200x/2b/85/42/2b8542fd0d099c9771bb5b332d6f51a9.jpg"
+              alt="Relaxing foot massage atmosphere"
+              loading="lazy"
+            />
           </div>
+
+          <div class="about-small-photo">
+            <img
+              src="https://i.pinimg.com/736x/21/8f/4c/218f4cd988ca278667bd28ff54a577ff.jpg"
+              alt="Calm massage setting"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="about-seal">
+            <div>
+              <strong>Quiet<br />Comfort</strong>
+              <span>Super Foot Spa</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-copy reveal reveal-delay-1">
+
+          <div class="eyebrow">About Super Foot Spa</div>
 
           <h2 class="section-title">
-            Put Your Body<br>
-            In Good Hands
+            Time to slow down,
+            reset and simply rest.
           </h2>
 
-          <h3>
-            A peaceful place to slow down.
-          </h3>
-
           <p>
-            Jasmine Spa welcomes you to a relaxing massage experience in
-            Poquoson, Virginia. Whether you are looking to unwind after a
-            demanding day, ease everyday muscle tension or simply enjoy quiet
-            time for yourself, our massage services are designed to help you
-            feel comfortable and refreshed.
+            Super Foot Spa is centered on an uncomplicated idea:
+            create a calm setting where guests can step away from daily
+            demands and enjoy a more restful pace. The experience is shaped
+            around comfort, cleanliness, privacy and a relaxed visit from
+            arrival through finish.
           </p>
 
           <p>
-            Choose from foot massage, therapeutic massage options including
-            Swedish, deep tissue and hot stone techniques, or enjoy a couples
-            massage together.
+            Whether you are looking to rest tired feet, unwind after a long
+            day or combine foot massage with acupressure, the goal is a
+            straightforward and peaceful experience without unnecessary
+            distractions.
           </p>
 
-          <div class="intro-details">
+          <div class="about-points">
 
-            <div>
-              <span class="detail-label">Location</span>
-
-              <div class="detail-value">
-                458 C Wythe Creek Road<br>
-                Poquoson, VA 23662
-              </div>
+            <div class="about-point">
+              <div class="about-point-icon">✦</div>
+              <strong>Quiet</strong>
+              <span>
+                A softer atmosphere designed for slowing down and resting.
+              </span>
             </div>
 
-            <div>
-              <span class="detail-label">Phone</span>
-
-              <div class="detail-value">
-                <a href="tel:+17575258188">
-                  757-525-8188
-                </a>
-              </div>
+            <div class="about-point">
+              <div class="about-point-icon">◇</div>
+              <strong>Clean</strong>
+              <span>
+                A composed setting with comfort and thoughtful presentation.
+              </span>
             </div>
 
-            <div>
-              <span class="detail-label">Hours</span>
-
-              <div class="detail-value">
-                Monday – Sunday<br>
-                8:00 AM – 10:00 PM
-              </div>
-            </div>
-
-            <div>
-              <span class="detail-label">Appointments</span>
-
-              <div class="detail-value">
-                Call or Text Us
-              </div>
+            <div class="about-point">
+              <div class="about-point-icon">○</div>
+              <strong>Simple</strong>
+              <span>
+                Clear service options, posted pricing and easy phone contact.
+              </span>
             </div>
 
           </div>
 
         </div>
-      </div>
-    </section>
-
-
-    <!-- ==========================================
-         PHILOSOPHY
-    =========================================== -->
-    <section class="philosophy">
-      <div class="philosophy-inner reveal">
-
-        <div class="section-kicker">
-          Jasmine Spa
-        </div>
-
-        <h2 class="philosophy-title">
-          Release · Relax · Unwind
-        </h2>
-
-        <p>
-          Give your body time to rest and recharge. Our massage services
-          provide a calming break from daily stress in a welcoming,
-          comfortable spa environment.
-        </p>
 
       </div>
     </section>
 
 
-    <!-- ==========================================
-         SERVICES
-    =========================================== -->
-    <section class="services" id="services">
+    <!-- =====================================================
+         EXPERIENCE
+         ===================================================== -->
+    <section class="section experience" id="experience">
+      <div class="experience-line" aria-hidden="true"></div>
+
       <div class="container">
 
-        <div class="services-head reveal">
+        <div class="section-head">
 
-          <div class="section-kicker">
-            Our Services
+          <div class="reveal">
+            <div class="eyebrow">The Experience</div>
+            <h2 class="section-title">
+              An unhurried rhythm,
+              from start to finish.
+            </h2>
           </div>
 
-          <h2 class="section-title">
-            Massage Services
-          </h2>
+          <p class="section-copy reveal reveal-delay-1">
+            The details are intentionally simple: arrive, settle in,
+            choose the session that fits your day and give yourself
+            time to disconnect.
+          </p>
 
-          <p>
-            Select the massage and session length that works best for you.
-            Call or text Jasmine Spa to request your appointment.
+        </div>
+
+        <div class="experience-grid">
+
+          <article class="experience-card reveal">
+            <div class="experience-step">01</div>
+            <h3>Calm Arrival</h3>
+            <p>
+              Begin without rushing. A few quiet minutes before your session
+              can help create a more comfortable transition from the day.
+            </p>
+          </article>
+
+          <article class="experience-card reveal reveal-delay-1">
+            <div class="experience-step">02</div>
+            <h3>Comfort First</h3>
+            <p>
+              A peaceful atmosphere keeps the focus on relaxation,
+              personal comfort and an easy visit.
+            </p>
+          </article>
+
+          <article class="experience-card reveal reveal-delay-2">
+            <div class="experience-step">03</div>
+            <h3>Mindful Details</h3>
+            <p>
+              Clean presentation, quiet surroundings and clear pricing
+              support a simple, low-stress experience.
+            </p>
+          </article>
+
+          <article class="experience-card reveal reveal-delay-3">
+            <div class="experience-step">04</div>
+            <h3>Restful Finish</h3>
+            <p>
+              Take a moment before returning to your day and leave at
+              your own comfortable pace.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         SERVICES & PRICING
+         Only services shown in the supplied store information
+         ===================================================== -->
+    <section class="section services" id="services">
+      <div class="container">
+
+        <div class="section-head">
+
+          <div class="reveal">
+            <div class="eyebrow">Services & Pricing</div>
+            <h2 class="section-title">
+              Choose the pace
+              that feels right.
+            </h2>
+          </div>
+
+          <p class="section-copy reveal reveal-delay-1">
+            Straightforward options for foot-focused relaxation,
+            acupressure or a combination of both. Pricing below follows
+            the provided Super Foot Spa menu.
           </p>
 
         </div>
 
 
-        <div class="service-grid">
+        <div class="services-grid">
 
           <!-- FOOT MASSAGE -->
           <article class="service-card reveal">
 
-            <img
-              class="service-image"
-              src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1100&q=85"
-              alt="Foot massage"
-              loading="lazy"
-            >
+            <div class="service-media service-carousel">
+              <span class="service-label">Foot Massage</span>
 
-            <div class="service-content">
-
-              <div class="service-number">
-                Service 01
+              <div class="service-slide active">
+                <img
+                  src="https://i.pinimg.com/1200x/6a/df/fe/6adffe5706bdce88dd2d2d0fc6875398.jpg"
+                  alt="Foot massage"
+                  loading="lazy"
+                />
               </div>
 
-              <h3>Foot Massage</h3>
-
-              <div class="service-style">
-                Relax · Refresh · Recharge
+              <div class="service-slide">
+                <img
+                  src="https://i.pinimg.com/1200x/71/a4/b7/71a4b75a19fbadf33bc6dc340e91340c.jpg"
+                  alt="Foot massage relaxation"
+                  loading="lazy"
+                />
               </div>
 
-              <table class="price-table">
+              <div class="service-slide">
+                <img
+                  src="https://i.pinimg.com/1200x/2b/85/42/2b8542fd0d099c9771bb5b332d6f51a9.jpg"
+                  alt="Foot-focused massage session"
+                  loading="lazy"
+                />
+              </div>
 
-                <thead>
-                  <tr>
-                    <th>Time</th>
-                    <th>Cash</th>
-                    <th>Card</th>
-                  </tr>
-                </thead>
+              <div class="service-slide">
+                <img
+                  src="https://i.pinimg.com/736x/76/48/7c/76487c07076e4b41fcce7c4ea35e2005.jpg"
+                  alt="Relaxing foot massage"
+                  loading="lazy"
+                />
+              </div>
 
-                <tbody>
-                  <tr>
-                    <td>30 Min</td>
-                    <td>$35</td>
-                    <td>—</td>
-                  </tr>
+              <div class="carousel-dots"></div>
+            </div>
 
-                  <tr>
-                    <td>45 Min</td>
-                    <td>$50</td>
-                    <td>$53</td>
-                  </tr>
+            <div class="service-body">
 
-                  <tr>
-                    <td>60 Min</td>
-                    <td>$60</td>
-                    <td>$65</td>
-                  </tr>
-                </tbody>
+              <div class="service-title-row">
+                <h3>Foot Massage</h3>
 
-              </table>
+                <div class="service-price-from">
+                  <span>From</span>
+                  <strong>$24.99</strong>
+                </div>
+              </div>
+
+              <p class="service-description">
+                A foot-focused session suited to tired feet, long days
+                standing or walking, and anyone who simply wants a quieter
+                moment to sit back and unwind.
+              </p>
+
+              <div class="service-benefit">
+                <strong>Good for:</strong>
+                end-of-day relaxation, tired feet and an easy restorative pause.
+              </div>
+
+              <div class="pricing-list">
+                <div class="price-row">
+                  <span>30 Minutes</span>
+                  <strong>$24.99</strong>
+                </div>
+
+                <div class="price-row">
+                  <span>60 Minutes</span>
+                  <strong>$39.99</strong>
+                </div>
+
+                <div class="price-row">
+                  <span>90 Minutes</span>
+                  <strong>$59.99</strong>
+                </div>
+              </div>
+
+              <p class="service-note">
+                Posted special signage notes complimentary attention to the
+                head, shoulders, neck, arms and back with the foot massage
+                special. Call for current promotion details.
+              </p>
 
               <a
-                href="#"
-                class="btn service-book sms-link"
-                data-message="Hi Jasmine Spa, I would like to book a Foot Massage. Preferred date/time: "
+                href="tel:+15103645515"
+                class="btn btn-dark service-action"
               >
-                Text To Book
+                Call About Foot Massage
               </a>
 
             </div>
           </article>
 
 
-          <!-- THERAPEUTIC MASSAGE -->
-          <article class="service-card reveal">
+          <!-- ACUPRESSURE -->
+          <article class="service-card reveal reveal-delay-1">
 
-            <img
-              class="service-image"
-              src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1100&q=85"
-              alt="Therapeutic massage"
-              loading="lazy"
-            >
+            <div class="service-media service-carousel">
+              <span class="service-label">Acupressure</span>
 
-            <div class="service-content">
-
-              <div class="service-number">
-                Service 02
+              <div class="service-slide active">
+                <img
+                  src="https://i.pinimg.com/1200x/dc/36/fe/dc36feaf9cc11bec29cc3de7834c539e.jpg"
+                  alt="Acupressure bodywork"
+                  loading="lazy"
+                />
               </div>
 
-              <h3>Therapeutic Massage</h3>
-
-              <div class="service-style">
-                Swedish · Deep Tissue · Hot Stone
+              <div class="service-slide">
+                <img
+                  src="https://i.pinimg.com/736x/c0/e8/3f/c0e83fc3058518c785d6cfe1b15da601.jpg"
+                  alt="Pressure-based massage bodywork"
+                  loading="lazy"
+                />
               </div>
 
-              <table class="price-table">
+              <div class="service-slide">
+                <img
+                  src="https://i.pinimg.com/736x/21/8f/4c/218f4cd988ca278667bd28ff54a577ff.jpg"
+                  alt="Relaxing acupressure session"
+                  loading="lazy"
+                />
+              </div>
 
-                <thead>
-                  <tr>
-                    <th>Time</th>
-                    <th>Cash</th>
-                    <th>Card</th>
-                  </tr>
-                </thead>
+              <div class="service-slide">
+                <img
+                  src="https://i.pinimg.com/736x/f6/33/48/f6334826491861572c8e532a6a099cdc.jpg"
+                  alt="Acupressure massage setting"
+                  loading="lazy"
+                />
+              </div>
 
-                <tbody>
-                  <tr>
-                    <td>30 Min</td>
-                    <td>$50</td>
-                    <td>$53</td>
-                  </tr>
+              <div class="carousel-dots"></div>
+            </div>
 
-                  <tr>
-                    <td>45 Min</td>
-                    <td>$60</td>
-                    <td>$65</td>
-                  </tr>
+            <div class="service-body">
 
-                  <tr>
-                    <td>60 Min</td>
-                    <td>$70</td>
-                    <td>$75</td>
-                  </tr>
+              <div class="service-title-row">
+                <h3>Acupressure</h3>
 
-                  <tr>
-                    <td>90 Min</td>
-                    <td>$105</td>
-                    <td>$110</td>
-                  </tr>
+                <div class="service-price-from">
+                  <span>From</span>
+                  <strong>$39.99</strong>
+                </div>
+              </div>
 
-                  <tr>
-                    <td>120 Min</td>
-                    <td>$140</td>
-                    <td>$150</td>
-                  </tr>
-                </tbody>
+              <p class="service-description">
+                A pressure-focused bodywork option for guests who prefer a
+                more concentrated session while still keeping the experience
+                calm and unhurried.
+              </p>
 
-              </table>
+              <div class="service-benefit">
+                <strong>Good for:</strong>
+                general everyday tension, full-body fatigue and guests who
+                prefer focused pressure.
+              </div>
+
+              <div class="pricing-list">
+                <div class="price-row">
+                  <span>30 Minutes</span>
+                  <strong>$39.99</strong>
+                </div>
+
+                <div class="price-row">
+                  <span>60 Minutes</span>
+                  <strong>$59.99</strong>
+                </div>
+
+                <div class="price-row">
+                  <span>90 Minutes</span>
+                  <strong>$89.99</strong>
+                </div>
+              </div>
+
+              <p class="service-note">
+                Posted special signage lists complimentary hot stone therapy
+                with the acupressure special. Please call to confirm current
+                promotional availability.
+              </p>
 
               <a
-                href="#"
-                class="btn service-book sms-link"
-                data-message="Hi Jasmine Spa, I would like to book a Therapeutic Massage. Preferred massage type/date/time: "
+                href="tel:+15103645515"
+                class="btn btn-dark service-action"
               >
-                Text To Book
+                Call About Acupressure
               </a>
 
             </div>
           </article>
 
 
-          <!-- COUPLES MASSAGE -->
-          <article class="service-card reveal">
+          <!-- COMBO -->
+          <article class="service-card reveal reveal-delay-2">
 
-            <img
-              class="service-image"
-              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1100&q=85"
-              alt="Couples massage"
-              loading="lazy"
-            >
+            <div class="service-media service-carousel">
+              <span class="service-label">Foot + Acupressure</span>
 
-            <div class="service-content">
-
-              <div class="service-number">
-                Service 03
+              <div class="service-slide active">
+                <div class="combo-pair">
+                  <img
+                    src="https://i.pinimg.com/736x/19/1e/83/191e837a24d9e5efd7f015539b78c373.jpg"
+                    alt="Foot massage portion of combo session"
+                    loading="lazy"
+                  />
+                  <img
+                    src="https://i.pinimg.com/736x/4c/2b/cb/4c2bcb39fbc7189277e8e505c2e1bc8f.jpg"
+                    alt="Acupressure portion of combo session"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
-              <h3>Couples Massage</h3>
-
-              <div class="service-style">
-                Relax Together
+              <div class="service-slide">
+                <div class="combo-pair">
+                  <img
+                    src="https://i.pinimg.com/736x/d2/08/0e/d2080e371f664c11f134eb291883c1dc.jpg"
+                    alt="Foot massage portion of combo session"
+                    loading="lazy"
+                  />
+                  <img
+                    src="https://i.pinimg.com/736x/97/dc/96/97dc9699bc6c850ecd8776eaee3b7898.jpg"
+                    alt="Acupressure portion of combo session"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
-              <table class="price-table">
+              <div class="service-slide">
+                <div class="combo-pair">
+                  <img
+                    src="https://i.pinimg.com/736x/4b/18/78/4b18785283d7086b596c4c44777599d1.jpg"
+                    alt="Foot-focused massage"
+                    loading="lazy"
+                  />
+                  <img
+                    src="https://i.pinimg.com/736x/e6/0b/e7/e60be71086090d2d3f2737b2291242a9.jpg"
+                    alt="Acupressure bodywork"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
 
-                <thead>
-                  <tr>
-                    <th>Time</th>
-                    <th>Cash</th>
-                    <th>Card</th>
-                  </tr>
-                </thead>
+              <div class="carousel-dots"></div>
+            </div>
 
-                <tbody>
-                  <tr>
-                    <td>30 Min</td>
-                    <td>$100</td>
-                    <td>$106</td>
-                  </tr>
+            <div class="service-body">
 
-                  <tr>
-                    <td>45 Min</td>
-                    <td>$120</td>
-                    <td>$130</td>
-                  </tr>
+              <div class="service-title-row">
+                <h3>Combo</h3>
 
-                  <tr>
-                    <td>60 Min</td>
-                    <td>$140</td>
-                    <td>$150</td>
-                  </tr>
+                <div class="service-price-from">
+                  <span>From</span>
+                  <strong>$59.99</strong>
+                </div>
+              </div>
 
-                  <tr>
-                    <td>90 Min</td>
-                    <td>$210</td>
-                    <td>$220</td>
-                  </tr>
-                </tbody>
+              <p class="service-description">
+                Combine foot massage and acupressure in a single visit.
+                Choose the timing combination that best fits how you want
+                to spend your session.
+              </p>
 
-              </table>
+              <div class="service-benefit">
+                <strong>Good for:</strong>
+                guests who want both a foot-focused session and
+                pressure-based bodywork during one visit.
+              </div>
+
+              <div class="pricing-list">
+                <div class="price-row">
+                  <span>30 min Foot + 30 min Acupressure</span>
+                  <strong>$59.99</strong>
+                </div>
+
+                <div class="price-row">
+                  <span>60 min Foot + 30 min Acupressure</span>
+                  <strong>$74.99</strong>
+                </div>
+
+                <div class="price-row">
+                  <span>30 min Foot + 60 min Acupressure</span>
+                  <strong>$79.99</strong>
+                </div>
+              </div>
+
+              <p class="service-note">
+                Combo pricing follows the provided Super Foot Spa menu.
+                Call the spa if you would like help choosing a session length.
+              </p>
 
               <a
-                href="#"
-                class="btn service-book sms-link"
-                data-message="Hi Jasmine Spa, I would like to book a Couples Massage. Preferred date/time: "
+                href="tel:+15103645515"
+                class="btn btn-dark service-action"
               >
-                Text To Book
+                Call About a Combo
               </a>
 
             </div>
@@ -1605,54 +2984,110 @@
 
         </div>
 
-        <p class="pricing-note">
-          Please contact Jasmine Spa for appointment availability.
-          Prices and availability may be subject to change.
-        </p>
+
+        <!-- Membership -->
+        <div class="membership reveal">
+
+          <div>
+            <div class="eyebrow">Membership Special</div>
+
+            <h3>
+              Buy 10,
+              get 1 free.
+            </h3>
+
+            <p>
+              Membership promotion shown on the provided Super Foot Spa
+              signage. Please call for current terms, eligibility and
+              promotional availability.
+            </p>
+          </div>
+
+          <a
+            href="tel:+15103645515"
+            class="btn btn-primary"
+          >
+            Call for Membership Details
+          </a>
+
+        </div>
 
       </div>
     </section>
 
 
-    <!-- ==========================================
-         BOOK APPOINTMENT
-    =========================================== -->
-    <section class="appointment">
-      <div class="container appointment-grid">
+    <!-- =====================================================
+         GALLERY
+         ===================================================== -->
+    <section class="section gallery" aria-label="Spa atmosphere">
 
-        <div class="reveal">
+      <div class="container">
 
-          <div class="section-kicker">
-            Book Your Appointment
+        <div class="section-head">
+
+          <div class="reveal">
+            <div class="eyebrow">A Calmer Pace</div>
+
+            <h2 class="section-title">
+              Small moments,
+              thoughtfully quiet.
+            </h2>
           </div>
 
-          <h2>
-            Ready to relax?
-          </h2>
-
-          <p>
-            Send Jasmine Spa a text message with your preferred service,
-            date and time, or call us directly.
+          <p class="section-copy reveal reveal-delay-1">
+            Soft light, a slower rhythm and time set aside from the
+            outside world — a visual expression of the relaxed atmosphere
+            behind the Super Foot Spa experience.
           </p>
 
         </div>
 
-        <div class="appointment-buttons reveal">
 
-          <a
-            href="tel:+17575258188"
-            class="btn btn-outline-dark"
-          >
-            Call
-          </a>
+        <div class="gallery-grid">
 
-          <a
-            href="#"
-            class="btn btn-dark sms-link"
-            data-message="Hi Jasmine Spa, I would like to make an appointment. Service: ___ Date: ___ Time: ___"
-          >
-            Text Booking
-          </a>
+          <figure class="gallery-item reveal">
+            <img
+              src="https://i.pinimg.com/1200x/6a/a8/16/6aa81653401306ff6509eeea39b0d422.jpg"
+              alt="Foot massage relaxation"
+              loading="lazy"
+            />
+            <figcaption class="gallery-tag">
+              Foot-Focused Relaxation
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal reveal-delay-1">
+            <img
+              src="https://i.pinimg.com/736x/c9/55/e0/c955e0563cc8cd9ef272677aa1e28f68.jpg"
+              alt="Quiet foot massage moment"
+              loading="lazy"
+            />
+            <figcaption class="gallery-tag">
+              Slow Down
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal reveal-delay-2">
+            <img
+              src="https://i.pinimg.com/736x/86/47/ef/8647ef5b51553a8e57ca32e6b2ec74f0.jpg"
+              alt="Pressure-based massage bodywork"
+              loading="lazy"
+            />
+            <figcaption class="gallery-tag">
+              Focused Comfort
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal reveal-delay-1">
+            <img
+              src="https://i.pinimg.com/736x/51/25/ef/5125efc1d8af786696c07c8bd95452ab.jpg"
+              alt="Restful wellness moment"
+              loading="lazy"
+            />
+            <figcaption class="gallery-tag">
+              Time to Reset
+            </figcaption>
+          </figure>
 
         </div>
 
@@ -1660,117 +3095,524 @@
     </section>
 
 
-    <!-- ==========================================
-         CONTACT
-    =========================================== -->
-    <section class="contact" id="contact">
+    <!-- =====================================================
+         PHONE-BASED RESERVATION / VISIT PLANNER
+         ===================================================== -->
+    <section class="section call-section" id="schedule">
 
-      <div class="container contact-header reveal">
+      <div class="container call-grid">
 
-        <div class="section-kicker">
-          Contact
+        <div class="reveal">
+
+          <div class="eyebrow">Plan Your Visit</div>
+
+          <h2 class="section-title">
+            Scheduling is
+            one call away.
+          </h2>
+
+          <p class="section-copy">
+            Have a session in mind? Call Super Foot Spa directly to ask
+            about availability or current promotional details.
+          </p>
+
+          <a
+            class="big-phone"
+            href="tel:+15103645515"
+            aria-label="Call 510 364 5515"
+          >
+            (510) 364-5515
+          </a>
+
         </div>
 
-        <h2 class="section-title">
-          Visit Jasmine Spa
-        </h2>
+
+        <div class="planner reveal reveal-delay-1">
+
+          <h3>Visit Planner</h3>
+
+          <p class="planner-note">
+            You can use these fields to organize what you want to ask for
+            before calling. Nothing is submitted online.
+          </p>
+
+          <form
+            id="visitPlanner"
+            onsubmit="return false;"
+            aria-label="Visit planning form"
+          >
+
+            <div class="form-grid">
+
+              <div class="field">
+                <label for="guestName">Name</label>
+                <input
+                  id="guestName"
+                  type="text"
+                  placeholder="Your name"
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="field">
+                <label for="guestPhone">Phone</label>
+                <input
+                  id="guestPhone"
+                  type="tel"
+                  placeholder="Your phone number"
+                  autocomplete="tel"
+                />
+              </div>
+
+              <div class="field">
+                <label for="serviceChoice">Service</label>
+
+                <select id="serviceChoice">
+                  <option value="">Select a service</option>
+                  <option>Foot Massage</option>
+                  <option>Acupressure</option>
+                  <option>Combo</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="preferredTime">Preferred Time</label>
+                <input
+                  id="preferredTime"
+                  type="text"
+                  placeholder="Example: 3:00 PM"
+                />
+              </div>
+
+              <div class="field full">
+                <label for="visitNotes">Notes</label>
+                <textarea
+                  id="visitNotes"
+                  placeholder="Anything you want to remember when you call..."
+                ></textarea>
+              </div>
+
+            </div>
+
+            <a
+              class="btn btn-primary planner-call"
+              href="tel:+15103645515"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                  19.79 19.79 0 0 1-8.63-3.07
+                  19.5 19.5 0 0 1-6-6
+                  19.79 19.79 0 0 1-3.07-8.67
+                  A2 2 0 0 1 4.11 2h3
+                  a2 2 0 0 1 2 1.72
+                  12.84 12.84 0 0 0 .7 2.81
+                  2 2 0 0 1-.45 2.11L8.09 9.91
+                  a16 16 0 0 0 6 6l1.27-1.27
+                  a2 2 0 0 1 2.11-.45
+                  12.84 12.84 0 0 0 2.81.7
+                  A2 2 0 0 1 22 16.92z"/>
+              </svg>
+
+              Call Super Foot Spa
+            </a>
+
+            <p class="planner-disclaimer">
+              Visit planner information remains on your device and is not
+              transmitted to the spa.
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         REVIEWS
+         Sample copy clearly marked for replacement
+         ===================================================== -->
+    <section class="section reviews" id="reviews">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div class="reveal">
+            <div class="eyebrow">Guest Experience</div>
+
+            <h2 class="section-title">
+              Calm is in
+              the details.
+            </h2>
+          </div>
+
+          <p class="section-copy reveal reveal-delay-1">
+            Quiet surroundings, a relaxed pace and an uncomplicated visit
+            are the qualities this experience is designed around.
+          </p>
+
+        </div>
 
       </div>
 
 
-      <div class="contact-grid">
+      <div class="reviews-wrap">
 
-        <div class="contact-panel">
+        <div class="review-row left">
+          <div class="review-track">
 
-          <div class="section-kicker">
-            Book Your Appointment
-          </div>
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “A calm, simple experience. I especially liked being able
+                to slow down without feeling rushed.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
 
-          <h3>
-            Call or text us to schedule your massage.
-          </h3>
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “The atmosphere felt quiet and comfortable, which was
+                exactly what I wanted after a long day.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
 
-          <div class="contact-items">
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Clear pricing made it easy to choose the amount of time
+                that worked for my schedule.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
 
-            <div class="contact-item">
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “I appreciated how straightforward the visit felt.
+                Comfortable, peaceful and easy.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
 
-              <span class="contact-label">
-                Call
-              </span>
-
-              <div class="contact-value">
-                <a href="tel:+17575258188">
-                  757-525-8188
-                </a>
-              </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-              <span class="contact-label">
-                Text Booking
-              </span>
-
-              <div class="contact-value">
-                <a
-                  href="#"
-                  class="sms-link"
-                  data-message="Hi Jasmine Spa, I would like to book a massage appointment. Preferred service/date/time: "
-                >
-                  Send Appointment Text
-                </a>
-              </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-              <span class="contact-label">
-                Address
-              </span>
-
-              <div class="contact-value">
-                458 C Wythe Creek Road<br>
-                Poquoson, VA 23662
-              </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-              <span class="contact-label">
-                Hours
-              </span>
-
-              <div class="contact-value">
-                Monday – Sunday<br>
-                8:00 AM – 10:00 PM
-              </div>
-
-            </div>
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Calling ahead was simple, and the relaxed environment
+                made it easy to switch off for a while.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
 
           </div>
+        </div>
 
 
-          <div class="contact-actions">
+        <div class="review-row right">
+          <div class="review-track">
+
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “A nice option when you want to give your feet a rest
+                and have some quiet time.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
+
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “I liked the peaceful feel and the fact that the service
+                choices were easy to understand.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
+
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “The whole visit had a relaxed pace. No unnecessary
+                complications — just time to unwind.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
+
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Clean presentation, calm surroundings and a comfortable
+                way to take a break from a busy day.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
+
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “The combination option was convenient when I wanted
+                both foot massage and acupressure in one visit.”
+              </p>
+              <span>Sample Guest Review</span>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+
+      <p class="review-disclaimer">
+        Sample website copy shown for design purposes. Replace with verified
+        customer reviews before publishing as customer testimonials.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         FAQ
+         ===================================================== -->
+    <section class="section faq" id="faq">
+
+      <div class="container faq-grid">
+
+        <div class="faq-side reveal">
+          <div class="eyebrow">Frequently Asked</div>
+
+          <h2 class="section-title">
+            Before
+            your visit.
+          </h2>
+
+          <p class="section-copy">
+            For store-specific questions or current policies, calling
+            Super Foot Spa directly is the fastest option.
+          </p>
+
+          <a
+            href="tel:+15103645515"
+            class="btn btn-dark"
+            style="margin-top: 28px;"
+          >
+            Call (510) 364-5515
+          </a>
+        </div>
+
+
+        <div class="faq-list reveal reveal-delay-1">
+
+          <div class="faq-item">
+
+            <button
+              class="faq-question"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-answer-1"
+            >
+              <span>How early should I arrive?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+
+            <div
+              class="faq-answer-wrap"
+              id="faq-answer-1"
+            >
+              <div class="faq-answer-inner">
+                <p class="faq-answer">
+                  Arriving a few minutes before your preferred session time
+                  can make the start of your visit feel less rushed.
+                  If you have timing questions, call
+                  <a href="tel:+15103645515">(510) 364-5515</a>.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button
+              class="faq-question"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-answer-2"
+            >
+              <span>Can I get a massage if I have an injury?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+
+            <div
+              class="faq-answer-wrap"
+              id="faq-answer-2"
+            >
+              <div class="faq-answer-inner">
+                <p class="faq-answer">
+                  If you have an injury, recent procedure or medical concern,
+                  call ahead and consider checking with your healthcare
+                  professional before receiving massage or pressure-based
+                  bodywork. Massage services are not a substitute for medical
+                  evaluation or treatment.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button
+              class="faq-question"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-answer-3"
+            >
+              <span>What is your cancellation policy?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+
+            <div
+              class="faq-answer-wrap"
+              id="faq-answer-3"
+            >
+              <div class="faq-answer-inner">
+                <p class="faq-answer">
+                  A specific cancellation policy was not included in the
+                  provided store information. Please call
+                  <a href="tel:+15103645515">(510) 364-5515</a>
+                  when scheduling to confirm the current policy.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button
+              class="faq-question"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-answer-4"
+            >
+              <span>Is there parking available?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+
+            <div
+              class="faq-answer-wrap"
+              id="faq-answer-4"
+            >
+              <div class="faq-answer-inner">
+                <p class="faq-answer">
+                  Parking details were not included in the provided store
+                  information. If you need help planning your arrival,
+                  please call the spa before visiting.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT & LOCATION
+         ===================================================== -->
+    <section class="contact" id="contact">
+
+      <div class="contact-wrap">
+
+        <div class="contact-info">
+
+          <div class="eyebrow">Contact & Location</div>
+
+          <h2>
+            Come in,
+            slow down.
+          </h2>
+
+
+          <div class="contact-details">
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon" aria-hidden="true">
+                ☎
+              </div>
+
+              <div>
+                <span>Phone</span>
+                <a href="tel:+15103645515">
+                  (510) 364-5515
+                </a>
+              </div>
+            </div>
+
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon" aria-hidden="true">
+                ◇
+              </div>
+
+              <div>
+                <span>Address</span>
+                <strong>
+                  39105 Cedar Blvd<br />
+                  Newark, CA 94560
+                </strong>
+              </div>
+            </div>
+
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon" aria-hidden="true">
+                ◷
+              </div>
+
+              <div>
+                <span>Business Hours</span>
+                <strong>
+                  10:00 AM – 9:00 PM
+                </strong>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="contact-buttons">
 
             <a
-              href="tel:+17575258188"
-              class="btn btn-light"
+              class="btn btn-primary"
+              href="tel:+15103645515"
             >
-              Call Now
+              Call Super Foot Spa
             </a>
 
             <a
-              href="#"
-              class="btn btn-outline-light sms-link"
-              data-message="Hi Jasmine Spa, I would like to make an appointment. Service: ___ Date: ___ Time: ___"
+              class="btn btn-outline"
+              href="https://www.google.com/maps/search/?api=1&query=39105+Cedar+Blvd+Newark+CA+94560"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Text To Book
+              Get Directions
             </a>
 
           </div>
@@ -1781,225 +3623,475 @@
         <div class="map-wrap">
 
           <iframe
-            title="Jasmine Spa location"
-            src="https://www.google.com/maps?q=458%20C%20Wythe%20Creek%20Road%2C%20Poquoson%2C%20VA%2023662&output=embed"
+            title="Map showing Super Foot Spa at 39105 Cedar Blvd, Newark, California"
+            src="https://www.google.com/maps?q=39105+Cedar+Blvd,+Newark,+CA+94560&output=embed"
             loading="lazy"
-            allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
           ></iframe>
 
         </div>
 
       </div>
-
     </section>
 
   </main>
 
 
-  <!-- ==========================================
+  <!-- =======================================================
        FOOTER
-  =========================================== -->
+       ======================================================= -->
   <footer>
-    <div class="container footer-grid">
 
-      <a href="#home" class="footer-brand">
-        Jasmine Spa
-      </a>
+    <div class="container footer-main">
 
-      <div class="footer-copy">
-        © <span id="year"></span> Jasmine Spa · Poquoson, Virginia
+      <div class="footer-brand">
+        <h3>Super Foot Spa</h3>
+
+        <p>
+          A calm Newark destination for foot massage,
+          acupressure and combination sessions.
+        </p>
       </div>
 
-      <a class="footer-phone" href="tel:+17575258188">
-        757-525-8188
-      </a>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services & Pricing</a>
+        <a href="#experience">Experience</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+
+      <div class="footer-column">
+        <h4>Visit</h4>
+
+        <a href="tel:+15103645515">
+          (510) 364-5515
+        </a>
+
+        <span>
+          39105 Cedar Blvd<br />
+          Newark, CA 94560
+        </span>
+
+        <span>
+          10:00 AM – 9:00 PM
+        </span>
+      </div>
 
     </div>
+
+
+    <div class="container footer-bottom">
+      <span>
+        © <span id="year"></span> Super Foot Spa. All rights reserved.
+      </span>
+
+      <span>
+        Newark, California
+      </span>
+    </div>
+
   </footer>
 
 
-  <!-- ==========================================
-       MOBILE CALL / TEXT BAR
-  =========================================== -->
-  <div class="mobile-actions">
-
-    <a
-      href="tel:+17575258188"
-      class="mobile-call"
+  <!-- Desktop floating call button -->
+  <a
+    class="desktop-call-float"
+    href="tel:+15103645515"
+    aria-label="Call Super Foot Spa"
+  >
+    <svg
+      class="icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      aria-hidden="true"
     >
-      Call
-    </a>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+        19.79 19.79 0 0 1-8.63-3.07
+        19.5 19.5 0 0 1-6-6
+        19.79 19.79 0 0 1-3.07-8.67
+        A2 2 0 0 1 4.11 2h3
+        a2 2 0 0 1 2 1.72
+        12.84 12.84 0 0 0 .7 2.81
+        2 2 0 0 1-.45 2.11L8.09 9.91
+        a16 16 0 0 0 6 6l1.27-1.27
+        a2 2 0 0 1 2.11-.45
+        12.84 12.84 0 0 0 2.81.7
+        A2 2 0 0 1 22 16.92z"/>
+    </svg>
 
-    <a
-      href="#"
-      class="mobile-text sms-link"
-      data-message="Hi Jasmine Spa, I would like to book a massage appointment. Service: ___ Date: ___ Time: ___"
+    Call (510) 364-5515
+  </a>
+
+
+  <!-- Mobile persistent call button -->
+  <a
+    class="mobile-call-bar"
+    href="tel:+15103645515"
+    aria-label="Tap to call Super Foot Spa at 510 364 5515"
+  >
+    <svg
+      class="icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      aria-hidden="true"
     >
-      Text Booking
-    </a>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+        19.79 19.79 0 0 1-8.63-3.07
+        19.5 19.5 0 0 1-6-6
+        19.79 19.79 0 0 1-3.07-8.67
+        A2 2 0 0 1 4.11 2h3
+        a2 2 0 0 1 2 1.72
+        12.84 12.84 0 0 0 .7 2.81
+        2 2 0 0 1-.45 2.11L8.09 9.91
+        a16 16 0 0 0 6 6l1.27-1.27
+        a2 2 0 0 1 2.11-.45
+        12.84 12.84 0 0 0 2.81.7
+        A2 2 0 0 1 22 16.92z"/>
+    </svg>
 
-  </div>
+    Tap to Call · (510) 364-5515
+  </a>
 
 
-  <!-- ==========================================
-       JAVASCRIPT
-  =========================================== -->
   <script>
-    /*
-      Jasmine Spa
-      Phone:
-      757-525-8188
+    /* =========================================================
+       SUPER FOOT SPA — INTERACTIONS
+       Native JavaScript only
+       ========================================================= */
 
-      SMS booking behavior:
-      Clicking every "Text Booking" button opens the customer's
-      phone messaging application and prepares a text addressed
-      to Jasmine Spa.
-    */
+    (() => {
+      "use strict";
 
-    const JASMINE_PHONE = "+17575258188";
-
-
-    /* ==========================================
-       SMS BOOKING
-    =========================================== */
-
-    function openSMS(message) {
-      const encodedMessage = encodeURIComponent(message);
-
-      const isIOS =
-        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-        (
-          navigator.platform === "MacIntel" &&
-          navigator.maxTouchPoints > 1
-        );
-
-      /*
-        iOS commonly uses:
-        sms:number&body=text
-
-        Android / most other mobile devices commonly use:
-        sms:number?body=text
-      */
-
-      const smsURL = isIOS
-        ? `sms:${JASMINE_PHONE}&body=${encodedMessage}`
-        : `sms:${JASMINE_PHONE}?body=${encodedMessage}`;
-
-      window.location.href = smsURL;
-    }
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
 
-    document.querySelectorAll(".sms-link").forEach(function(link) {
+      /* -------------------------------------------------------
+         Current year
+         ------------------------------------------------------- */
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
 
-      link.addEventListener("click", function(event) {
 
-        event.preventDefault();
+      /* -------------------------------------------------------
+         Sticky header
+         ------------------------------------------------------- */
+      const siteHeader = document.getElementById("siteHeader");
 
-        const message =
-          link.getAttribute("data-message") ||
-          "Hi Jasmine Spa, I would like to book a massage appointment.";
+      const updateHeader = () => {
+        siteHeader.classList.toggle("scrolled", window.scrollY > 25);
+      };
 
-        openSMS(message);
+      updateHeader();
 
+      window.addEventListener("scroll", updateHeader, {
+        passive: true
       });
 
-    });
 
+      /* -------------------------------------------------------
+         Mobile menu
+         ------------------------------------------------------- */
+      const menuButton = document.getElementById("menuButton");
+      const navLinks = document.getElementById("navLinks");
 
-    /* ==========================================
-       MOBILE MENU
-    =========================================== */
+      function setMenu(open) {
+        navLinks.classList.toggle("open", open);
+        menuButton.classList.toggle("active", open);
+        document.body.classList.toggle("menu-open", open);
 
-    const mobileMenuButton =
-      document.getElementById("mobileMenuButton");
-
-    const mobileMenu =
-      document.getElementById("mobileMenu");
-
-
-    mobileMenuButton.addEventListener("click", function() {
-
-      const isOpen =
-        mobileMenu.classList.toggle("open");
-
-      mobileMenuButton.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-    });
-
-
-    mobileMenu.querySelectorAll("a").forEach(function(link) {
-
-      link.addEventListener("click", function() {
-
-        mobileMenu.classList.remove("open");
-
-        mobileMenuButton.setAttribute(
+        menuButton.setAttribute(
           "aria-expanded",
-          "false"
+          String(open)
         );
 
+        menuButton.setAttribute(
+          "aria-label",
+          open ? "Close navigation menu" : "Open navigation menu"
+        );
+      }
+
+      menuButton.addEventListener("click", () => {
+        setMenu(!navLinks.classList.contains("open"));
       });
 
-    });
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenu(false));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          setMenu(false);
+        }
+      });
 
 
-    /* ==========================================
-       SCROLL REVEAL
-    =========================================== */
+      /* -------------------------------------------------------
+         Hero slideshow
+         ------------------------------------------------------- */
+      const heroSlides =
+        Array.from(document.querySelectorAll(".hero-slide"));
 
-    const revealItems =
-      document.querySelectorAll(".reveal");
+      const heroDots =
+        Array.from(document.querySelectorAll(".hero-dot"));
+
+      let heroIndex = 0;
+      let heroTimer = null;
+
+      function showHero(index) {
+        heroIndex = index;
+
+        heroSlides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+
+        heroDots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+      }
+
+      function nextHero() {
+        showHero(
+          (heroIndex + 1) % heroSlides.length
+        );
+      }
+
+      function restartHeroTimer() {
+        if (reducedMotion) return;
+
+        clearInterval(heroTimer);
+
+        heroTimer = setInterval(
+          nextHero,
+          5800
+        );
+      }
+
+      heroDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showHero(index);
+          restartHeroTimer();
+        });
+      });
+
+      restartHeroTimer();
 
 
-    if ("IntersectionObserver" in window) {
+      /* -------------------------------------------------------
+         Service image carousels
+         ------------------------------------------------------- */
+      const serviceCarousels =
+        document.querySelectorAll(".service-carousel");
 
-      const revealObserver =
-        new IntersectionObserver(
-          function(entries, observer) {
+      serviceCarousels.forEach((carousel, carouselIndex) => {
+        const slides =
+          Array.from(carousel.querySelectorAll(".service-slide"));
 
-            entries.forEach(function(entry) {
+        const dotsContainer =
+          carousel.querySelector(".carousel-dots");
 
-              if (entry.isIntersecting) {
+        if (slides.length <= 1) {
+          if (dotsContainer) dotsContainer.remove();
+          return;
+        }
 
-                entry.target.classList.add("visible");
+        let current = 0;
+        let timer = null;
 
-                observer.unobserve(entry.target);
+        const dots = slides.map((_, index) => {
+          const button = document.createElement("button");
 
-              }
+          button.type = "button";
+          button.className =
+            "carousel-dot" + (index === 0 ? " active" : "");
 
-            });
+          button.setAttribute(
+            "aria-label",
+            `Show service image ${index + 1}`
+          );
 
-          },
-          {
-            threshold: 0.12
+          dotsContainer.appendChild(button);
+
+          return button;
+        });
+
+        function showSlide(index) {
+          current = index;
+
+          slides.forEach((slide, slideIndex) => {
+            slide.classList.toggle(
+              "active",
+              slideIndex === index
+            );
+          });
+
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle(
+              "active",
+              dotIndex === index
+            );
+          });
+        }
+
+        function nextSlide() {
+          showSlide(
+            (current + 1) % slides.length
+          );
+        }
+
+        function start() {
+          if (reducedMotion) return;
+
+          clearInterval(timer);
+
+          timer = setInterval(
+            nextSlide,
+            4800 + carouselIndex * 450
+          );
+        }
+
+        function stop() {
+          clearInterval(timer);
+        }
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            showSlide(index);
+            start();
+          });
+        });
+
+        carousel.addEventListener("mouseenter", stop);
+        carousel.addEventListener("mouseleave", start);
+        carousel.addEventListener("focusin", stop);
+        carousel.addEventListener("focusout", start);
+
+        start();
+      });
+
+
+      /* -------------------------------------------------------
+         FAQ accordion
+         ------------------------------------------------------- */
+      const faqButtons =
+        document.querySelectorAll(".faq-question");
+
+      faqButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const item = button.closest(".faq-item");
+          const isOpen =
+            button.getAttribute("aria-expanded") === "true";
+
+          faqButtons.forEach((otherButton) => {
+            const otherItem =
+              otherButton.closest(".faq-item");
+
+            otherButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            otherItem.classList.remove("open");
+          });
+
+          if (!isOpen) {
+            button.setAttribute(
+              "aria-expanded",
+              "true"
+            );
+
+            item.classList.add("open");
           }
-        );
-
-
-      revealItems.forEach(function(item) {
-        revealObserver.observe(item);
+        });
       });
 
-    } else {
 
-      revealItems.forEach(function(item) {
-        item.classList.add("visible");
+      /* -------------------------------------------------------
+         Infinite review rows
+         Clone each track once to maintain seamless scrolling
+         ------------------------------------------------------- */
+      document.querySelectorAll(".review-track").forEach((track) => {
+        const cards =
+          Array.from(track.children);
+
+        cards.forEach((card) => {
+          const clone =
+            card.cloneNode(true);
+
+          clone.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          track.appendChild(clone);
+        });
       });
 
-    }
+
+      /* -------------------------------------------------------
+         Scroll reveal
+         ------------------------------------------------------- */
+      const revealItems =
+        document.querySelectorAll(".reveal");
+
+      if (
+        reducedMotion ||
+        !("IntersectionObserver" in window)
+      ) {
+        revealItems.forEach((item) => {
+          item.classList.add("visible");
+        });
+      } else {
+        const revealObserver =
+          new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.12,
+              rootMargin: "0px 0px -45px 0px"
+            }
+          );
+
+        revealItems.forEach((item) => {
+          revealObserver.observe(item);
+        });
+      }
 
 
-    /* ==========================================
-       COPYRIGHT YEAR
-    =========================================== */
+      /* -------------------------------------------------------
+         Image error fallback
+         ------------------------------------------------------- */
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.style.opacity = "0";
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+          const parent = img.parentElement;
 
+          if (parent) {
+            parent.style.background =
+              "linear-gradient(135deg, #17372d, #0d211a)";
+          }
+        });
+      });
+
+    })();
   </script>
 
 </body>
